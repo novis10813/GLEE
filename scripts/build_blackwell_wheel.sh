@@ -16,7 +16,11 @@ MAX_JOBS=${MAX_JOBS:-$(nproc)}
 export CUDA_HOME TORCH_CUDA_ARCH_LIST GLEE_VERSION MAX_JOBS FORCE_CUDA=1
 export PATH="$CUDA_HOME/bin:$PATH"
 
-"$PYTHON" - <<'PY'
+# Run outside this upstream checkout so its historical top-level detectron2
+# source cannot shadow the installed compatibility wheel.
+(
+  cd /tmp
+  "$PYTHON" - <<'PY'
 import sys
 import torch
 import detectron2
@@ -26,6 +30,7 @@ assert torch.__version__ == "2.7.1+cu128", torch.__version__
 assert torch.version.cuda == "12.8", torch.version.cuda
 assert detectron2.__version__ == "0.6+torch2.7.1cu128.sm120", detectron2.__version__
 PY
+)
 
 cd "$ROOT_DIR"
 rm -rf build dist
