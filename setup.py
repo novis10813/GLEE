@@ -47,7 +47,7 @@ def get_extensions():
         extension(
             "MultiScaleDeformableAttention",
             sources,
-            include_dirs=[str(extension_dir)],
+            include_dirs=[str((ROOT / extension_dir).resolve())],
             define_macros=macros,
             extra_compile_args=compile_args,
         )
