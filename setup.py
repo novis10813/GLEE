@@ -10,7 +10,7 @@ from torch.utils.cpp_extension import CUDA_HOME, CppExtension, CUDAExtension
 
 
 ROOT = Path(__file__).resolve().parent
-OPS_DIR = ROOT / "src" / "glee" / "models" / "pixel_decoder" / "ops"
+OPS_DIR = Path("src") / "glee" / "models" / "pixel_decoder" / "ops"
 VERSION = os.environ.get(
     "GLEE_VERSION", "0.1.0+torch2.7.1cu128.sm120"
 )
