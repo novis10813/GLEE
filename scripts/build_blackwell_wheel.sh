@@ -33,7 +33,7 @@ PY
 )
 
 cd "$ROOT_DIR"
-rm -rf build dist
+rm -rf build dist src/*.egg-info
 "$PYTHON" -m build --wheel --no-isolation
 wheel=$(find dist -maxdepth 1 -name '*.whl' -print -quit)
 [[ -n "$wheel" ]] || { printf 'wheel was not produced\n' >&2; exit 1; }
