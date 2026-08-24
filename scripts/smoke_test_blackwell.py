@@ -38,7 +38,7 @@ actual = MSDeformAttnFunction.apply(
     value, shapes, level_start_index, sampling_locations, attention_weights, 2
 )
 torch.testing.assert_close(actual, reference, rtol=1e-2, atol=1e-3)
-actual.sum().backward()
+actual.backward(torch.ones_like(actual).contiguous())
 assert value.grad is not None
 assert sampling_locations.grad is not None
 assert attention_weights.grad is not None
