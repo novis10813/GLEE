@@ -73,6 +73,7 @@ setup(
         "einops>=0.8,<1",
         "fairscale>=0.4.4,<0.5",
         "numpy>=2.0,<2.4",
+        "scipy>=1.13,<2",
         "timm>=0.9,<2",
         "torch==2.7.1",
         "torchvision==0.22.1",
