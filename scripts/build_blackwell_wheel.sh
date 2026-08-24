@@ -37,6 +37,6 @@ rm -rf build dist src/*.egg-info
 "$PYTHON" -m build --wheel --no-isolation
 wheel=$(find dist -maxdepth 1 -name '*.whl' -print -quit)
 [[ -n "$wheel" ]] || { printf 'wheel was not produced\n' >&2; exit 1; }
-sha256sum "$wheel" > dist/SHA256SUMS
+(cd dist && sha256sum "$(basename "$wheel")" > SHA256SUMS)
 WHEEL_PATH="$wheel" "$PYTHON" scripts/write_build_metadata.py > dist/build-metadata.json
 printf 'Built %s\n' "$wheel"
